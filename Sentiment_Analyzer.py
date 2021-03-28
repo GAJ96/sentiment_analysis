@@ -10,7 +10,7 @@ layout = [[sg.Text("Paste your text directly into the box below or open a file f
           [sg.Text("(Note that the checkbox must be selected inorder for the file to be analyzed.)")],
           [sg.InputText(key = "-TEXT-")],
           [sg.Input(), sg.FileBrowse(key = "-TEXTFILE-")],
-          [sg.Checkbox("Add file from computer", default = False, key = "-CHECKBOX-")],
+          [sg.Checkbox("Read file from computer", default = False, key = "-CHECKBOX-")],
           [sg.Text("")],
           [sg.Button("Analyze")],
           [sg.Text("")],
@@ -31,7 +31,7 @@ while True:
         break
 
     if event == "Analyze":      # If Analyze is pressed:
-        if values["-CHECKBOX-"] == True: # If it was chosen to analyze a textfile
+        if values["-CHECKBOX-"] == True and values["-TEXTFILE-"] != "": # If it was chosen to analyze a textfile
             with open(values["-TEXTFILE-"], "r") as f:
                 text = f.read() # store the textfile in text
         else:
